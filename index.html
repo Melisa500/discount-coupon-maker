@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount coupon maker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <header>
+        <h1>
+            Discount coupon maker
+        </h1>
+    </header>
+    <main>
+        <section class="actions ">
+            <button class="button__calculate">Calculate discount</button>
+            <button class="button__coupon">I have a coupon</button>
+        </section>
+        <section class="discount__calculator hidden">
+            <form action="">
+                <div class="div__input">
+                    <label for="price">Starting price</label>
+                    <input type="text" id="price" pattern = "[0-9]">
+                </div>
+                <div class="div__input inputPercentage">
+                    <label for="percentage">Discount percentage</label>
+                    <input type="text" id="percentage">
+                </div>
+                <div class="div__input">
+                    <label for="stop">Discount cap</label>
+                    <input type="text" id="stop">
+                </div>
+                <button class="button__calculate__discount">CALCULATE</button>
+            </form>
+            <div class="result hidden">
+                <p class="text__result--active">
+                    The price of the product without discount is $ <span class="price"></span>
+                </p>
+                <p class="text__result--active">
+                    The discount to be made is $ <span class="discount"></span>
+                </p>
+                <p class="text__result--active">
+                    The total amount to pay is $ <span class="total"></span>
+                </p>
+            </div>
+            <div>
+                <button class="button__back">
+                    <span class="material-symbols-outlined">
+                    arrow_back
+                    </span>
+                </button>
+            </div>
+        </section>
+        <section class="discount__coupon hidden">
+            <div class="coupon__data">
+                <label for="coupon">Enter your coupon code</label>
+                <input type="text" id="coupon">
+            </div>
+            <button class="see__discount">See discount</button>
+            <div class="text__result">
+                <p>You have a <span class="percentage">50%</span> discount with a refund limit of <span class="stop">$500</span> on products in the following category: <span class="category">Clothing</span></p>
+            </div>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+<script src="main.js"></script>
+</html>
