@@ -116,6 +116,8 @@ form {
 .text__result {
     padding: 3rem;
     text-align: center;
+    color: white;
+    font-size: 1.3rem;
 }
 
 .button__calculate__discount {

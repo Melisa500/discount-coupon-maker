@@ -1,18 +1,41 @@
 const buttonCalculate = document.querySelector('.button__calculate');
+const buttonCoupon = document.querySelector('.button__coupon');
+const buttonCalculatorBack = document.querySelector('.calculator-back');
+const buttonCouponBack = document.querySelector('.coupon-back');
 const inicioActions = document.querySelector('.actions');
 const discountCalculator = document.querySelector('.discount__calculator');
 const buttonCalculateDiscount = document.querySelector('.button__calculate__discount');
+const discountCoupon = document.querySelector('.discount__coupon');
 const priceInput = document.querySelector('#price');
 const percentageInput = document.querySelector('#percentage');
 const stopInput = document.querySelector('#stop');
 const inputPercentage = document.querySelector('.inputPercentage');
 
 buttonCalculate.addEventListener('click', openDiscountCalculator);
+buttonCoupon.addEventListener('click', openCouponSearch);
+buttonCalculatorBack.addEventListener('click', goBackCalculator);
+buttonCouponBack.addEventListener('click', goBackCoupon);
 buttonCalculateDiscount.addEventListener('click', calculateDiscount);
 
-function openDiscountCalculator() {
+function openDiscountCalculator () {
     inicioActions.classList.add('hidden');
     discountCalculator.classList.remove('hidden');
+}
+
+function openCouponSearch () {
+    console.log('hola')
+    inicioActions.classList.add('hidden');
+    discountCoupon.classList.remove('hidden');
+}
+
+function goBackCalculator () {
+    discountCalculator.classList.add('hidden');
+    inicioActions.classList.remove('hidden');
+}
+
+function goBackCoupon () {
+    discountCoupon.classList.add('hidden');
+    inicioActions.classList.remove('hidden');
 }
 
 function limitInputDecimal(input) {
@@ -117,4 +140,6 @@ function calculateDiscount(e) {
     const resultTotalCalculate = priceValue - resultDiscountAmount;
     resultTotal.textContent = resultTotalCalculate;
 }
+
+
 
