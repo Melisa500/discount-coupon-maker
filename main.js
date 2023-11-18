@@ -15,7 +15,6 @@ const discountDescription = document.querySelector('.p__discount');
 const couponList = [];
 const discountCouponInput = document.querySelector('#coupon')
 const message = document.querySelector('.p__discount');
-//const discountCouponInputValue = discountCouponInput.value
 
 
 buttonCalculate.addEventListener('click', openDiscountCalculator);
@@ -63,10 +62,8 @@ function limitInputDecimal(input) {
     input.addEventListener('input', function () {
         let inputValue = input.value;
 
-        // Verificar si hay más de un punto decimal
         const dotCount = inputValue.split('.').length - 1;
         if (dotCount > 1) {
-            // Si hay más de un punto, eliminar los puntos adicionales
             input.value = inputValue.replace(/\.+$/, '');
         }
 
@@ -74,12 +71,9 @@ function limitInputDecimal(input) {
         if (decimalIndex !== -1) {
             const decimalPart = inputValue.substring(decimalIndex + 1);
             if (decimalPart.length > 2) {
-                // Si hay más de 2 dígitos después del punto, truncar la entrada
                 input.value = inputValue.substring(0, decimalIndex + 3);
             }
         }
-
-       // console.log(input.value);
     });
 }
 
@@ -90,7 +84,6 @@ function limitEntryInteger(input) {
     input.addEventListener('keydown', function (event) {
         const keyCode = event.which || event.keyCode;
 
-        // Permitir solo números y teclas de control
         if (!((keyCode >= 48 && keyCode <= 57) ||
             (keyCode >= 96 && keyCode <= 105) ||
             keyCode === 8 || keyCode === 9 ||
@@ -109,8 +102,6 @@ function limitEntryInteger(input) {
         } else {
             input.value = intValue;
         }
-
-        //console.log(input.value);
     });
 }
 
@@ -151,7 +142,6 @@ function calculateDiscount(e) {
     const resultTotalCalculate = priceValue - resultDiscountAmount;
     resultTotal.textContent = resultTotalCalculate;
 }
-
 
 //Coupons
 couponList.push({
@@ -194,7 +184,6 @@ function seeDiscount() {
         message.textContent = 'The coupon code is not valid.'
     }
 
-    // Limpiar el valor del input
     document.querySelector('#coupon').value = '';
 }
 
