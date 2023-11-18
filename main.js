@@ -10,12 +10,20 @@ const priceInput = document.querySelector('#price');
 const percentageInput = document.querySelector('#percentage');
 const stopInput = document.querySelector('#stop');
 const inputPercentage = document.querySelector('.inputPercentage');
+const buttonSeeDiscount = document.querySelector('.see__discount');
+const discountDescription = document.querySelector('.p__discount');
+const couponList = [];
+const discountCouponInput = document.querySelector('#coupon')
+const message = document.querySelector('.p__discount');
+//const discountCouponInputValue = discountCouponInput.value
+
 
 buttonCalculate.addEventListener('click', openDiscountCalculator);
 buttonCoupon.addEventListener('click', openCouponSearch);
 buttonCalculatorBack.addEventListener('click', goBackCalculator);
 buttonCouponBack.addEventListener('click', goBackCoupon);
 buttonCalculateDiscount.addEventListener('click', calculateDiscount);
+buttonSeeDiscount.addEventListener('click', seeDiscount);
 
 function openDiscountCalculator () {
     inicioActions.classList.add('hidden');
@@ -23,7 +31,6 @@ function openDiscountCalculator () {
 }
 
 function openCouponSearch () {
-    console.log('hola')
     inicioActions.classList.add('hidden');
     discountCoupon.classList.remove('hidden');
 }
@@ -36,6 +43,7 @@ function goBackCalculator () {
 function goBackCoupon () {
     discountCoupon.classList.add('hidden');
     inicioActions.classList.remove('hidden');
+    message.textContent = '';
 }
 
 function limitInputDecimal(input) {
@@ -141,5 +149,48 @@ function calculateDiscount(e) {
     resultTotal.textContent = resultTotalCalculate;
 }
 
+//Coupons
+couponList.push({
+    id: 'GC000024',
+    code: 'REX_202055',
+    creation_date: '16/11/2023',
+    finish_date: '16/12/2023',
+    discount: 10,
+    discount_cap: 500,
+    category: 'clothes',
+})
+couponList.push({
+    id: 'GC000025',
+    code: 'tutur_20FK55',
+    creation_date: '16/11/2023',
+    finish_date: '18/11/2023',
+    discount: 50,
+    discount_cap: 2000,
+    category: 'Home appliances',
+})
+couponList.push({
+    id: 'GC000026',
+    code: 'Fiesta_Loca',
+    creation_date: '20/11/2023',
+    finish_date: '29/11/2023',
+    discount: 50,
+    discount_cap: 0,
+    category: 'book',
+})
+//--------
 
+function seeDiscount() {
+    const discountCouponInputValue = document.querySelector('#coupon').value;
+    const couponInArray = couponList.find((coupon) => coupon.code === discountCouponInputValue);
+
+    if (couponInArray) {
+        discountCard = couponInArray;
+        message.textContent =  `You have a ${discountCard.discount}% discount with a refund limit of $${discountCard.discount_cap} on products in the following category: ${discountCard.category} `
+    } else {
+        message.textContent = 'The coupon code is not valid.'
+    }
+
+    // Limpiar el valor del input
+    document.querySelector('#coupon').value = '';
+}
 
