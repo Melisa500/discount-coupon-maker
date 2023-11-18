@@ -79,7 +79,7 @@ function limitInputDecimal(input) {
             }
         }
 
-        console.log(input.value);
+       // console.log(input.value);
     });
 }
 
@@ -103,17 +103,14 @@ function limitEntryInteger(input) {
     input.addEventListener('input', function () {
         let inputValue = input.value;
 
-        // Convertir a número entero y asegurarse de que esté entre 0 y 100
         const intValue = parseInt(inputValue, 10);
         if (isNaN(intValue) || intValue < 0 || intValue > 100) {
-            // Si no es un número entero o está fuera del rango, establecer el valor en blanco
             input.value = '';
         } else {
-            // Establecer el valor numérico entero
             input.value = intValue;
         }
 
-        console.log(input.value);
+        //console.log(input.value);
     });
 }
 
@@ -121,23 +118,29 @@ limitEntryInteger(percentageInput);
 
 function calculateDiscount(e) {
     e.preventDefault();
+
     const priceValue = document.querySelector('#price').value;
     const percentageValue = parseFloat(document.querySelector('#percentage').value);
     const stopValue = parseFloat(document.querySelector('#stop').value);
-
     const result = document.querySelector('.result');
+
+    if (!priceValue || isNaN(percentageValue) || isNaN(stopValue)) {
+        result.classList.add('hidden');
+        return;
+    }
+
     result.classList.remove('hidden');
 
     function discountAmountF() {
         const discountAmount = (percentageValue * priceValue) / 100;
-        if(discountAmount > stopValue){
+        if (discountAmount > stopValue) {
             return stopValue;
         }
         return discountAmount;
     }
 
     const resultDiscountAmount = discountAmountF();
-    
+
     const discountedPriceApplied = (priceValue * (100 - percentageValue)) / 100;
 
     const resultPrice = document.querySelector('.price');
@@ -148,6 +151,7 @@ function calculateDiscount(e) {
     const resultTotalCalculate = priceValue - resultDiscountAmount;
     resultTotal.textContent = resultTotalCalculate;
 }
+
 
 //Coupons
 couponList.push({
